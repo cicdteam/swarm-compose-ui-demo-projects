@@ -3,31 +3,27 @@ version: '2'
 services:
 
   drupal:
-    image: drupal:latest
+    image: drupal
     depends_on:
-      - drupal_volume
       - mysql
     environment:
       - SERVICE_NAME=drupal
+      - constraint:nodetype==worker
     ports:
       - "80"
-    volumes_from:
-      - drupal_volume
-
-  drupal_volume:
-    build: drupal-volume
     volumes:
-      - /efs/drupal:/var/www/html
+      - /shared/drupal-src:/var/www/html
 
   mysql:
-    image: mysql:latest
+    image: mysql
     environment:
       - MYSQL_DATABASE=drupal
       - MYSQL_USER=drupal
       - MYSQL_PASSWORD=secret
       - MYSQL_RANDOM_ROOT_PASSWORD=yes
+      - constraint:nodetype==worker
     volumes:
-      - /efs/mysql:/var/lib/mysql
+      - /shared/mysql:/var/lib/mysql
 
 networks:
   default:

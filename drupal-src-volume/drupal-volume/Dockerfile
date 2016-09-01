@@ -9,8 +9,9 @@ RUN apt-get update && apt-get install -y curl \
     && curl -sfSL "http://ftp.drupal.org/files/projects/drupal-${DRUPAL_VERSION}.tar.gz" -o drupal.tar.gz \
     && echo "${DRUPAL_MD5} *drupal.tar.gz" | md5sum -c - \
     && apt-get purge -y curl \
-    && apt-get autoremove -y
+    && apt-get autoremove -y \
+    && mkdir -p /var/www/html
 
-CMD cd /var/www/html; tar -xz --strip-components=1 -f /drupal.tar.gz; rm /drupal.tar.gz; chown -R www-data:www-data sites modules themes
+CMD cd /var/www/html; tar -xz --strip-components=1 -f /drupal.tar.gz; rm /drupal.tar.gz; chown -R www-data:www-data sites modules themes; echo 'Drupal files unpacked'
 
 VOLUME /var/www/html

@@ -1,0 +1,10 @@
+version: '2'
+
+services:
+
+  drupal_src_volume:
+    build: drupal-src-volume
+    environment:
+      - constraint:nodetype==control
+    volumes:
+      - /shared/drupal-src:/var/www/html
