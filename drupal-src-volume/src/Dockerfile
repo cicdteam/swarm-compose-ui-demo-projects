@@ -12,6 +12,6 @@ RUN apt-get update && apt-get install -y curl \
     && apt-get autoremove -y \
     && mkdir -p /var/www/html
 
-CMD cd /var/www/html; tar -xz --strip-components=1 -f /drupal.tar.gz; rm /drupal.tar.gz; chown -R www-data:www-data sites modules themes; echo 'Drupal files unpacked'
+CMD echo 'Extracting drupal files'; cd /var/www/html; tar -xz --strip-components=1 -f /drupal.tar.gz; rm /drupal.tar.gz; chown -R www-data:www-data sites modules themes; echo 'Drupal files unpacked'
 
 VOLUME /var/www/html
