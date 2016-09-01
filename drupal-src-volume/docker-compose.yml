@@ -4,7 +4,5 @@ services:
 
   drupal_src:
     build: src
-    environment:
-      - constraint:nodetype==control
     volumes:
       - /shared/drupal-src:/var/www/html
