@@ -17,7 +17,7 @@ services:
   drupal_volume:
     build: drupal-volume
     volumes:
-      - /tmp/drupal:/var/www/html
+      - /efs/drupal:/var/www/html
 
   mysql:
     image: mysql:latest
@@ -27,7 +27,7 @@ services:
       - MYSQL_PASSWORD=secret
       - MYSQL_RANDOM_ROOT_PASSWORD=yes
     volumes:
-      - /tmp/mysql:/var/lib/mysql
+      - /efs/mysql:/var/lib/mysql
 
 networks:
   default:
