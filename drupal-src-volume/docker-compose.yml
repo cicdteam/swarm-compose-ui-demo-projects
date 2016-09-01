@@ -2,8 +2,8 @@ version: '2'
 
 services:
 
-  drupal_src_volume:
-    build: drupal-src-volume
+  drupal_src:
+    build: src
     environment:
       - constraint:nodetype==control
     volumes:
